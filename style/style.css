@@ -1,0 +1,57 @@
+*{
+    margin: 0; 
+    padding: 0;
+}
+
+html{
+    font-size: 24px;
+}
+
+h1{
+    text-align: center;
+}
+
+.buttons, .board, .playZone, .presentarTurnos{
+    display: flex;
+}
+
+.presentarTurnos{
+    justify-content: space-evenly;
+}
+
+.playZone{
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.board{
+    padding: 1rem;
+    border: .01rem solid #333;
+    border-radius: 25px;
+    background-color: goldenrod;
+}
+
+.boton{
+    height: 2rem;
+    width: 2rem;
+    margin: .2rem;
+    border-radius: 50px;
+    border: .01rem solid #333;
+}
+
+.empty{
+    background-color:floralwhite;
+}
+
+.botonRojo{
+    background-color: crimson;
+}
+
+.botonAzul{
+    background-color:royalblue;
+}
+
+.hidden{
+    visibility: hidden;
+}

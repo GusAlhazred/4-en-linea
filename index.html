@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4 en linea</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/animations.css">
+</head>
+<body>
+    <header>
+        <h1>4 en linea</h1>
+    </header>
+    <main>
+        <div class="presentarTurnos">
+            <p>Turno: <span id="nroTurno">1</span></p>
+            <p id="displayPlayerTurn">Turno del jugador: <span id="turnoJugador">Rojo</span></p>
+        </div>
+        <div class="playZone">
+            <div class="buttons">
+                <div id="botonX0" data-column="0" class="botonSup boton botonRojo"></div>
+                <div id="botonX1" data-column="1" class="botonSup boton botonRojo"></div>
+                <div id="botonX2" data-column="2" class="botonSup boton botonRojo"></div>
+                <div id="botonX3" data-column="3" class="botonSup boton botonRojo"></div>
+                <div id="botonX4" data-column="4" class="botonSup boton botonRojo"></div>
+                <div id="botonX5" data-column="5" class="botonSup boton botonRojo"></div>
+                <div id="botonX6" data-column="6" class="botonSup boton botonRojo"></div>
+            </div>
+            <div class="board">
+                <div class="" data-row="1">
+                    <div class="col boton empty botonBoard" data-col="6" data-row="1"></div>
+                    <div class="col boton empty botonBoard" data-col="5" data-row="1"></div>
+                    <div class="col boton empty botonBoard" data-col="4" data-row="1"></div>
+                    <div class="col boton empty botonBoard" data-col="3" data-row="1"></div>
+                    <div class="col boton empty botonBoard" data-col="2" data-row="1"></div>
+                    <div class="col boton empty botonBoard" data-col="1" data-row="1"></div>
+                </div>
+                <div class="" data-row="2">
+                    <div class="col boton empty botonBoard" data-col="6" data-row="2"></div>
+                    <div class="col boton empty botonBoard" data-col="5" data-row="2"></div>
+                    <div class="col boton empty botonBoard" data-col="4" data-row="2"></div>
+                    <div class="col boton empty botonBoard" data-col="3" data-row="2"></div>
+                    <div class="col boton empty botonBoard" data-col="2" data-row="2"></div>
+                    <div class="col boton empty botonBoard" data-col="1" data-row="2"></div>
+                </div>
+                <div class="" data-row="3">
+                    <div class="col boton empty botonBoard" data-col="6" data-row="3"></div>
+                    <div class="col boton empty botonBoard" data-col="5" data-row="3"></div>
+                    <div class="col boton empty botonBoard" data-col="4" data-row="3"></div>
+                    <div class="col boton empty botonBoard" data-col="3" data-row="3"></div>
+                    <div class="col boton empty botonBoard" data-col="2" data-row="3"></div>
+                    <div class="col boton empty botonBoard" data-col="1" data-row="3"></div>
+                </div>
+                <div class="" data-row="4">
+                    <div class="col boton empty botonBoard" data-col="6" data-row="4"></div>
+                    <div class="col boton empty botonBoard" data-col="5" data-row="4"></div>
+                    <div class="col boton empty botonBoard" data-col="4" data-row="4"></div>
+                    <div class="col boton empty botonBoard" data-col="3" data-row="4"></div>
+                    <div class="col boton empty botonBoard" data-col="2" data-row="4"></div>
+                    <div class="col boton empty botonBoard" data-col="1" data-row="4"></div>
+                </div>
+                <div class="" data-row="5">
+                    <div class="col boton empty botonBoard" data-col="6" data-row="5"></div>
+                    <div class="col boton empty botonBoard" data-col="5" data-row="5"></div>
+                    <div class="col boton empty botonBoard" data-col="4" data-row="5"></div>
+                    <div class="col boton empty botonBoard" data-col="3" data-row="5"></div>
+                    <div class="col boton empty botonBoard" data-col="2" data-row="5"></div>
+                    <div class="col boton empty botonBoard" data-col="1" data-row="5"></div>
+                </div>
+                <div class="" data-row="6">
+                    <div class="col boton empty botonBoard" data-col="6" data-row="6"></div>
+                    <div class="col boton empty botonBoard" data-col="5" data-row="6"></div>
+                    <div class="col boton empty botonBoard" data-col="4" data-row="6"></div>
+                    <div class="col boton empty botonBoard" data-col="3" data-row="6"></div>
+                    <div class="col boton empty botonBoard" data-col="2" data-row="6"></div>
+                    <div class="col boton empty botonBoard" data-col="1" data-row="6"></div>
+                </div>
+                <div class="" data-row="7">
+                    <div class="col boton empty botonBoard" data-col="6" data-row="7"></div>
+                    <div class="col boton empty botonBoard" data-col="5" data-row="7"></div>
+                    <div class="col boton empty botonBoard" data-col="4" data-row="7"></div>
+                    <div class="col boton empty botonBoard" data-col="3" data-row="7"></div>
+                    <div class="col boton empty botonBoard" data-col="2" data-row="7"></div>
+                    <div class="col boton empty botonBoard" data-col="1" data-row="7"></div>
+                </div>
+        </div>
+        <div class="mostrarGanador">
+            <p class="hidden" id="textoVictoria">Gano el jugador: <span id="ganador"></span></p>
+            <button onclick="resetGame()" class="hidden" id="botonReset">Jugar otra vez?</button>
+        </div>
+    </main>
+        <script src="./js/code.js"></script>
+    </body>
+    </html>
