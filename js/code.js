@@ -1,23 +1,23 @@
 let board = [[],[],[],[],[],[],[]];
-const botonX0 = document.querySelector("#botonX0");
-const botonX1 = document.querySelector("#botonX1");
-const botonX2 = document.querySelector("#botonX2");
-const botonX3 = document.querySelector("#botonX3");
-const botonX4 = document.querySelector("#botonX4");
-const botonX5 = document.querySelector("#botonX5");
-const botonX6 = document.querySelector("#botonX6");
+// const buttonX0 = document.querySelector("#botonX0");
+// const buttonX1 = document.querySelector("#botonX1");
+// const buttonX2 = document.querySelector("#botonX2");
+// const buttonX3 = document.querySelector("#botonX3");
+// const buttonX4 = document.querySelector("#botonX4");
+// const buttonX5 = document.querySelector("#botonX5");
+// const buttonX6 = document.querySelector("#botonX6");
 const buttons = document.querySelectorAll(".botonSup");
 const buttonBoards = document.querySelectorAll(".botonBoard")
 const showTurn = document.querySelector("#nroTurno")
-const turnoJugador = document.querySelector("#turnoJugador")
-const jugadorGanador = document.querySelector("#ganador")
-const textoVictoria = document.querySelector("#textoVictoria")
+const PlayersTurn = document.querySelector("#turnoJugador")
+const winner = document.querySelector("#ganador")
+const VictoryText = document.querySelector("#textoVictoria")
 const displayPlayerTurn = document.querySelector("#displayPlayerTurn")
-const jugadores = ["Rojo", "Azul"]
+const players = ["Rojo", "Azul"]
 const botonReset = document.querySelector("#botonReset")
-const grises = document.querySelector("#grises");
-const menuFinJuego = document.querySelector(".mostrarGanador")
-const mensajeError = document.querySelector(".error")
+const gray = document.querySelector("#grises");
+const menuEndGame = document.querySelector(".mostrarGanador")
+const errorMessage = document.querySelector(".error")
 
 let wrongClick= 0;
 let turn = 1;
@@ -28,24 +28,24 @@ const resetGame = () => {
     turn = 1;
     end= 0;
     board = [[],[],[],[],[],[],[]];
-    dibujarTablero()
-    textoVictoria.classList.remove("jugadorRojo")
-    textoVictoria.classList.remove("jugadorAzul")
-    menuFinJuego.classList.add("hidden");
-    turnoJugador.textContent=jugadores[(turn+1)%2];
+    drawBoard()
+    VictoryText.classList.remove("jugadorRojo")
+    VictoryText.classList.remove("jugadorAzul")
+    menuEndGame.classList.add("hidden");
+    PlayersTurn.textContent=players[(turn+1)%2];
     showTurn.textContent=turn;
     buttons.forEach(boton => {
         boton.classList.add("botonRojo"); boton.classList.remove("botonAzul")
     })
     botonReset.classList.add("hidden")
     displayPlayerTurn.classList.remove("hidden")
-    grises.classList.remove("grises")
+    gray.classList.remove("grises")
 
     
 
 }
 
-const verificarFin = () => {
+const checkEnd = () => {
     for(x=0; x < board.length; x++){
         for(y=0; y < board[x].length; y++){
             board[x][y] == board[x][y+1] && board[x][y] == board[x][y+2] && board[x][y] == board[x][y+3] && (end = 1);
@@ -60,17 +60,17 @@ const verificarFin = () => {
     }
 
     if(end==1){
-        menuFinJuego.classList.remove("hidden")
-        textoVictoria.classList.add("ganador")
-        jugadorGanador.textContent=jugadores[(turn%2)]
+        menuEndGame.classList.remove("hidden")
+        VictoryText.classList.add("ganador")
+        winner.textContent=players[(turn%2)]
         botonReset.classList.remove("hidden")
         displayPlayerTurn.classList.add("hidden")
-        grises.classList.add("grises")
-        turn%2==0? textoVictoria.classList.add("jugadorRojo") : textoVictoria.classList.add("jugadorAzul")
+        gray.classList.add("grises")
+        turn%2==0? VictoryText.classList.add("jugadorRojo") : VictoryText.classList.add("jugadorAzul")
     }
 }
 
-const dibujarTablero = () => {
+const drawBoard = () => {
     x=0;
     y=0;
     buttonBoards.forEach(boton => {
@@ -90,53 +90,62 @@ const dibujarTablero = () => {
 
 }
 
-const actualizarTurno = () => {
+const refreshTurn = () => {
     showTurn.textContent=turn;
-    turnoJugador.textContent=jugadores[(turn+1)%2];
-    end === 1 && (turnoJugador.textContent="");
+    PlayersTurn.textContent=players[(turn+1)%2];
+    end === 1 && (PlayersTurn.textContent="");
 }
 
-const manejarInteraccionUsuario = (e) => {
-    if ((board[e.target.dataset.column].length < 6) && (end == 0)){
-        if(turn%2 === 0){
-            board[e.target.dataset.column].push("X");
-            buttons.forEach((button) => {
-                button.classList.remove("botonAzul")
-            })
-        } else {
-            board[e.target.dataset.column].push("O");
-            buttons.forEach((button) => {
-                button.classList.add("botonAzul")
-            })
-        }
-        turn++;
-    } else {
-        if (wrongClick == 0) {
+const returnErrorMessage = () => {
+    if (wrongClick == 0) {
         wrongClick=1;
-        mensajeError.classList.remove("hidden")
-        mensajeError.classList.add("mensajeError", "errorAnimacion");
-        turn%2 === 1? mensajeError.classList.add("jugadorRojo") : mensajeError.classList.remove("jugadorRojo")
+        errorMessage.classList.remove("hidden")
+        errorMessage.classList.add("mensajeError", "errorAnimacion");
+        turn%2 === 1? errorMessage.classList.add("jugadorRojo") : errorMessage.classList.remove("jugadorRojo")
         setTimeout( () => {
-            mensajeError.classList.add("hidden")
-            mensajeError.classList.remove("mensajeError", "errorAnimacion")
+            errorMessage.classList.add("hidden")
+            errorMessage.classList.remove("mensajeError", "errorAnimacion")
             wrongClick=0;
         },999)}
+}
+
+const addPlayersMove = (e) => {
+    if(turn%2 === 0){
+        board[e.target.dataset.column].push("X");
+        buttons.forEach((button) => {
+            button.classList.remove("botonAzul")
+        })
+    } else {
+        board[e.target.dataset.column].push("O");
+        buttons.forEach((button) => {
+            button.classList.add("botonAzul")
+        })
+    }
+}
+
+const resolveUserInteraction = (e) => {
+    if ((board[e.target.dataset.column].length < 6) && (end == 0)){
+        addPlayersMove(e)
+        turn++;
+    } else {
+        returnErrorMessage()
     }
     
-    verificarFin()
-    dibujarTablero()
-    actualizarTurno()
+    checkEnd()
+    drawBoard()
+    refreshTurn()
     
 }
 
-const cargaInicial = () => {
-    botonX0.addEventListener("click", manejarInteraccionUsuario)
-    botonX1.addEventListener("click", manejarInteraccionUsuario)
-    botonX2.addEventListener("click", manejarInteraccionUsuario)
-    botonX3.addEventListener("click", manejarInteraccionUsuario)
-    botonX4.addEventListener("click", manejarInteraccionUsuario)
-    botonX5.addEventListener("click", manejarInteraccionUsuario)
-    botonX6.addEventListener("click", manejarInteraccionUsuario)
+const initialLoad = () => {
+    // buttonX0.addEventListener("click", resolveUserInteraction)
+    // buttonX1.addEventListener("click", resolveUserInteraction)
+    // buttonX2.addEventListener("click", resolveUserInteraction)
+    // buttonX3.addEventListener("click", resolveUserInteraction)
+    // buttonX4.addEventListener("click", resolveUserInteraction)
+    // buttonX5.addEventListener("click", resolveUserInteraction)
+    // buttonX6.addEventListener("click", resolveUserInteraction)
+    buttons.forEach(button => {button.addEventListener("click", resolveUserInteraction)})
 }
 
-cargaInicial()
+initialLoad()

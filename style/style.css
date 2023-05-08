@@ -120,7 +120,7 @@ h1{
     text-align: center;
     font-size: 2rem;
     -webkit-text-stroke: 1px #eeeeee70;
-    animation: ganador 1s ease-in;
+    animation: winner 1s ease-in;
     animation-iteration-count: 1;
     
 }
@@ -134,7 +134,7 @@ h1{
     z-index: 3;
     background-color: #333333ef;
     backdrop-filter: grayscale(100%);
-    animation: ganador 1s ease-in;
+    animation: winner 1s ease-in;
 }
 
 .jugadorAzul{
