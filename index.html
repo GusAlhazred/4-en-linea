@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4 en linea</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Sigmar&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/animations.css">
 </head>
@@ -84,11 +89,13 @@
                     <div class="col boton empty botonBoard" data-col="2" data-row="7"></div>
                     <div class="col boton empty botonBoard" data-col="1" data-row="7"></div>
                 </div>
+                <p class="error jugadorAzul hidden">Nope. Ahi no se puede poner</p>
         </div>
-        <div class="mostrarGanador">
-            <p class="hidden" id="textoVictoria">Gano el jugador: <span id="ganador"></span></p>
-            <button onclick="resetGame()" class="hidden" id="botonReset">Jugar otra vez?</button>
+        <div class="mostrarGanador hidden">
+            <p class="" id="textoVictoria">Gano el jugador: <span id="ganador">Azul</span></p>
+            <button onclick="resetGame()" class="botonReset" id="botonReset">Jugar otra vez?</button>
         </div>
+        <div class="" id="grises"></div>
     </main>
         <script src="./js/code.js"></script>
     </body>

@@ -15,7 +15,11 @@ const textoVictoria = document.querySelector("#textoVictoria")
 const displayPlayerTurn = document.querySelector("#displayPlayerTurn")
 const jugadores = ["Rojo", "Azul"]
 const botonReset = document.querySelector("#botonReset")
+const grises = document.querySelector("#grises");
+const menuFinJuego = document.querySelector(".mostrarGanador")
+const mensajeError = document.querySelector(".error")
 
+let wrongClick= 0;
 let turn = 1;
 let end = 0;
 
@@ -25,7 +29,9 @@ const resetGame = () => {
     end= 0;
     board = [[],[],[],[],[],[],[]];
     dibujarTablero()
-    textoVictoria.classList.add("hidden");
+    textoVictoria.classList.remove("jugadorRojo")
+    textoVictoria.classList.remove("jugadorAzul")
+    menuFinJuego.classList.add("hidden");
     turnoJugador.textContent=jugadores[(turn+1)%2];
     showTurn.textContent=turn;
     buttons.forEach(boton => {
@@ -33,6 +39,9 @@ const resetGame = () => {
     })
     botonReset.classList.add("hidden")
     displayPlayerTurn.classList.remove("hidden")
+    grises.classList.remove("grises")
+
+    
 
 }
 
@@ -51,10 +60,13 @@ const verificarFin = () => {
     }
 
     if(end==1){
-        textoVictoria.classList.remove("hidden")
+        menuFinJuego.classList.remove("hidden")
+        textoVictoria.classList.add("ganador")
         jugadorGanador.textContent=jugadores[(turn%2)]
         botonReset.classList.remove("hidden")
         displayPlayerTurn.classList.add("hidden")
+        grises.classList.add("grises")
+        turn%2==0? textoVictoria.classList.add("jugadorRojo") : textoVictoria.classList.add("jugadorAzul")
     }
 }
 
@@ -84,7 +96,7 @@ const actualizarTurno = () => {
     end === 1 && (turnoJugador.textContent="");
 }
 
-const pushearElementoSegunTurno = (e) => {
+const manejarInteraccionUsuario = (e) => {
     if ((board[e.target.dataset.column].length < 6) && (end == 0)){
         if(turn%2 === 0){
             board[e.target.dataset.column].push("X");
@@ -99,7 +111,16 @@ const pushearElementoSegunTurno = (e) => {
         }
         turn++;
     } else {
-        console.log("No se puede")
+        if (wrongClick == 0) {
+        wrongClick=1;
+        mensajeError.classList.remove("hidden")
+        mensajeError.classList.add("mensajeError", "errorAnimacion");
+        turn%2 === 1? mensajeError.classList.add("jugadorRojo") : mensajeError.classList.remove("jugadorRojo")
+        setTimeout( () => {
+            mensajeError.classList.add("hidden")
+            mensajeError.classList.remove("mensajeError", "errorAnimacion")
+            wrongClick=0;
+        },999)}
     }
     
     verificarFin()
@@ -109,13 +130,13 @@ const pushearElementoSegunTurno = (e) => {
 }
 
 const cargaInicial = () => {
-    botonX0.addEventListener("click", pushearElementoSegunTurno)
-    botonX1.addEventListener("click", pushearElementoSegunTurno)
-    botonX2.addEventListener("click", pushearElementoSegunTurno)
-    botonX3.addEventListener("click", pushearElementoSegunTurno)
-    botonX4.addEventListener("click", pushearElementoSegunTurno)
-    botonX5.addEventListener("click", pushearElementoSegunTurno)
-    botonX6.addEventListener("click", pushearElementoSegunTurno)
+    botonX0.addEventListener("click", manejarInteraccionUsuario)
+    botonX1.addEventListener("click", manejarInteraccionUsuario)
+    botonX2.addEventListener("click", manejarInteraccionUsuario)
+    botonX3.addEventListener("click", manejarInteraccionUsuario)
+    botonX4.addEventListener("click", manejarInteraccionUsuario)
+    botonX5.addEventListener("click", manejarInteraccionUsuario)
+    botonX6.addEventListener("click", manejarInteraccionUsuario)
 }
 
 cargaInicial()
